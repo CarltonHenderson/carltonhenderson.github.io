@@ -109,7 +109,7 @@ analytics:
 author:
   name             : "Carlton Henderson"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am a software developer, kinetic sculptor, tiny house enthusiast, and aspiring human."
+  bio              : "I am a software developer, kinetic sculptor, tiny house enthusiast, and avid human."
   location         : "Boston"
   email            :
   links:
@@ -285,6 +285,7 @@ defaults:
       type: posts
     values:
       layout: single
+      toc: true
       author_profile: # true
       read_time: true
       comments: # true
