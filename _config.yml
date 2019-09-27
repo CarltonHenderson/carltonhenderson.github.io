@@ -18,7 +18,7 @@ minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt
 locale                   : "en-US"
 title                    : "./Carl.sH"
 title_separator          : "-"
-subtitle                 : "DevOps Blog of Carl Henderson"
+subtitle                 : "The DevOps Blog of Carl Henderson"
 name                     : "Carlton Henderson"
 description              : "A devops blog full of tips and tricks for unix, docker, aws, and more."
 url                      : "https://carltonhenderson.github.io"
@@ -109,7 +109,7 @@ analytics:
 author:
   name             : "Carlton Henderson"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am software developer, kinetic sculpture builder, tiny house enthusiast, and aspiring human."
+  bio              : "I am a software developer, kinetic sculptor, tiny house enthusiast, and aspiring human."
   location         : "Boston"
   email            :
   links:
@@ -285,7 +285,7 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
+      author_profile: # true
       read_time: true
       comments: # true
       share: true
