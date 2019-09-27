@@ -34,7 +34,7 @@ We may get the following error if our version of `nc` doesn't support `-lk` or `
 these options because they make the netcat server persistent, whereas by default it will quit after
 serving its first client.
 
-```txt
+```sh
 60s: forward host lookup failed: Unknown host
 ```
 
