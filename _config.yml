@@ -24,7 +24,7 @@ description              : "A devops blog full of tips and tricks for unix, dock
 url                      : "https://carltonhenderson.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "carltonhenderson/carltonhenderson.github.io"
-teaser                   : "/assets/images/543x297.png" # path of fallback teaser image
+teaser                   : "/assets/images/1228x625.png" # path of fallback teaser image
 logo                     : "/assets/images/95x97.png" # path of logo image to display in the masthead
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
