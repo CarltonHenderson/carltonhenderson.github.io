@@ -42,8 +42,11 @@ A solution, since we have docker installed, is to use the version of netcat whic
 the _alpine_ docker image, remembering to publish the port.
 
 ```sh
-docker run --publish 127.0.0.1:8888:8888 alpine nc -lk -p 8888 -e sleep 60s
+docker run --publish 0.0.0.0:8888:8888 alpine nc -lk -p 8888 -e sleep 60s
 ```
+
+An earlier version of this blog had 127.0.0.1 in the command above. Thus docker would only list on
+localhost and computers outside of yours wouldn't be able to access the netcat server. {: .notice--info}
 
 ## Example Client Behavior
 
