@@ -1,8 +1,9 @@
 ---
 title: "Netcat makes a bad web server."
+classes: wide
 tags:
-  - linux
   - networking
+  - http
   - netcat
   - tcp
   - docker
