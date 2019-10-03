@@ -46,7 +46,7 @@ docker run --publish 0.0.0.0:8888:8888 alpine nc -lk -p 8888 -e sleep 60s
 ```
 
 An earlier version of this blog had 127.0.0.1 in the command above. Thus docker would only list on
-localhost and computers outside of yours wouldn't be able to access the netcat server. {: .notice--info}
+localhost and computers outside of yours wouldn't be able to access the netcat server.{: .notice--info}
 
 ## Example Client Behavior
 
