@@ -1,13 +1,13 @@
 ---
-title: "Netcat makes a bad web server."
-classes: #wide
-toc: true
+classes: wide
 tags:
   - networking
   - http
   - netcat
   - tcp
   - docker
+title: "Netcat makes a bad web server."
+toc: #true
 ---
 
 ## Context

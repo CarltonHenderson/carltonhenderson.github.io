@@ -1,13 +1,13 @@
 ---
-title: "Simulating a Slow HTTP Server"
-toc: true
 classes: #wide
 tags:
-  - linux
-  - networking
-  - netcat
-  - tcp
   - docker
+  - linux
+  - netcat
+  - networking
+  - tcp
+title: "Simulating a Slow HTTP Server"
+toc: true
 ---
 
 One of the API servers at Acme Mallets is occasionally taking a very long time to respond and our
