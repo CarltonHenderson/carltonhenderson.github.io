@@ -80,9 +80,9 @@ When it does finally succeed the network list is cleared! And we're left with a 
 | 192.168.1.7          | 200      | document  |  Other                                 | 61 B           | 37 ms |
 | favicon.ico          | 200      | text/plain | Other                                 | 61 B           | 23 ms |
 
-## Morale
+## Moral
 
-Morale of the story? Netcat isn't foolproof and Chrome isn't as simple as you might think. It will
+Moral of the story? Netcat isn't foolproof and Chrome isn't as simple as you might think. It will
 retry failed connections apparently.
 
 ## Solution
