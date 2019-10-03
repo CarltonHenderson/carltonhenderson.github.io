@@ -1,6 +1,6 @@
 ---
 title: "Netcat makes a bad web server."
-classes: wide
+classes: #wide
 toc: true
 tags:
   - networking

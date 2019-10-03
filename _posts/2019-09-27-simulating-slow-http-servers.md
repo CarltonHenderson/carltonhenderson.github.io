@@ -1,7 +1,7 @@
 ---
 title: "Simulating a Slow HTTP Server"
 toc: true
-classes: wide
+classes: #wide
 tags:
   - linux
   - networking
