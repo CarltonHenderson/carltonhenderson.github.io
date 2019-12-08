@@ -1,4 +1,4 @@
-<!-- 
+<!--
     https://weatherwidget.io/
     Celcius: Remove ?unit=us from href
  -->
@@ -35,14 +35,14 @@
         padding: 15px;
     }
 
-    /* The columns inside a row are all floating to the left, and are therefore taken out of the flow of the page, and other elements will be placed as if the columns do not exist. To prevent this, we will add a style that clears the flow: */ 
+    /* The columns inside a row are all floating to the left, and are therefore taken out of the flow of the page, and other elements will be placed as if the columns do not exist. To prevent this, we will add a style that clears the flow: */
     .row::after {
         content: "";
         clear: both;
         display: table;
       }
-      
-    /* Carl's Styles 
+
+    /* Carl's Styles
     Colors: https://paletton.com/#uid=74V1c0kn4u2dQI9iXySsCrYtYlK
     */
     body {
@@ -67,10 +67,37 @@
         padding: 5px;
     }
 </style>
- 
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
+    <!-- Vue development version, includes helpful console warnings -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <!-- Vue production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        const LAT_LONG = "42.4201,-71.1615"; // Arlington, MA
+        const FORECAST_BOX = "66,78";        // derived from https://api.weather.gov/points/42.4201,-71.1615
+        const HOURLY_URL = `https://api.weather.gov/gridpoints/BOX/${FORECAST_BOX}/forecast/hourly`;
+
+        function fTempWindChill(fTemp,mphWind) {
+            chill=(
+                35.74
+                + 0.6215 * fTemp
+                - 35.75          * Math.pow(mphWind,0.16)
+                + 0.4275 * fTemp * Math.pow(mphWind,0.16)
+            );
+            return chill
+        }
+        function celsiusTempFromFahrenheit(FahrenheitTemp) {
+            return (FahrenheitTemp - 32) * 5 / 9
+        }
+    </script>
+
     <title>💙 Weather Arlington 💙</title>
 </head>
 <body>
@@ -90,6 +117,33 @@
             <script type='text/javascript' src='https://darksky.net/widget/default-small/42.4201,-71.1615/uk12/en.js?width=100%&height=70&title=Full Forecast&textColor=FFAC68&bgColor=52106A&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=ca'></script>
         </div>
     </div>
+    <div class="row" id="app">
+        <div class="col-6 fahrenheit">
+            <center>Feels Like: {{fFeelsLike}}°F</center>
+        </div>
+        <div class="col-6 celsius">
+            <center>Feels Like: {{cFeelsLike}}°C</center>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                fFeelsLike: "-40",
+                cFeelsLike: "-40",
+            },
+            mounted() { // when the Vue app is booted up, this is run automatically.
+                var self = this // create a closure to access component in the callback below
+                $.getJSON(HOURLY_URL, function(data) {
+                    temp = data.properties.periods[0].temperature; // 27
+                    windSpeedString = data.properties.periods[0].windSpeed; // "8 mph"
+                    windSpeed = Number(windSpeedString.split(" ")[0]) // 8
+                    self.fFeelsLike = Math.round(fTempWindChill(temp, windSpeed));
+                    self.cFeelsLike = Math.round(celsiusTempFromFahrenheit(self.fFeelsLike));
+                });
+            },
+        })
+    </script>
     <div class="row ch-darksky fahrenheit">
         <div class="col-12">
             <script type='text/javascript' src='https://darksky.net/widget/graph-bar/42.4201,-71.1615/us12/en.js?width=100%&height=120&title=Full Forecast&textColor=6FC3C3&bgColor=672d7c&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=us&timeColor=6FC3C3&tempColor=6FC3C3&currentDetailsOption=false'></script>
