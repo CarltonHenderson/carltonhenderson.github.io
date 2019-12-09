@@ -3,8 +3,19 @@
     <head>
         <meta charset="utf-8"/>
 
-<script>
-            // https://weatherwidget.io/
+        <!-- Favicon Stuff -->
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png?v=69B8QMb3zQ">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=69B8QMb3zQ">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=69B8QMb3zQ">
+        <link rel="manifest" href="/site.webmanifest?v=69B8QMb3zQ">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg?v=69B8QMb3zQ" color="#52106A">
+        <link rel="shortcut icon" href="/favicon.ico?v=69B8QMb3zQ">
+        <meta name="msapplication-TileColor" content="#52106A">
+        <meta name="theme-color" content="#52106A">
+        
+        <title>💙 Weather Arlington 💙</title>
+
+        <script> // https://weatherwidget.io/
             //   Celcius: Remove ?unit=us from href
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
 </script>
@@ -19,18 +30,18 @@
     }
 
     /*make one class for each of the 12 columns, class="col-" and a number defining how many columns the section should span:*/
-    .col-1 {width: 8.33%;}
-    .col-2 {width: 16.66%;}
-    .col-3 {width: 25%;}
-    .col-4 {width: 33.33%;}
-    .col-5 {width: 41.66%;}
-    .col-6 {width: 50%;}
-    .col-7 {width: 58.33%;}
-    .col-8 {width: 66.66%;}
-    .col-9 {width: 75%;}
-    .col-10 {width: 83.33%;}
-    .col-11 {width: 91.66%;}
-    .col-12 {width: 100%;}
+            .col-1  {width: calc(100% / 12 *  1);}
+            .col-2  {width: calc(100% / 12 *  2);}
+            .col-3  {width: calc(100% / 12 *  3);}
+            .col-4  {width: calc(100% / 12 *  4);}
+            .col-5  {width: calc(100% / 12 *  5);}
+            .col-6  {width: calc(100% / 12 *  6);}
+            .col-7  {width: calc(100% / 12 *  7);}
+            .col-8  {width: calc(100% / 12 *  8);}
+            .col-9  {width: calc(100% / 12 *  9);}
+            .col-10 {width: calc(100% / 12 * 10);}
+            .col-11 {width: calc(100% / 12 * 11);}
+            .col-12 {width: calc(100% / 12 * 12);}
 
     /* All these columns should be floating to the left, and have a padding of 15px: */
     [class*="col-"] {
@@ -82,35 +93,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script>
-        const LAT_LONG = "42.4201,-71.1615"; // Arlington, MA
-        const FORECAST_BOX = "66,78";        // derived from https://api.weather.gov/points/42.4201,-71.1615
-        const HOURLY_URL = `https://api.weather.gov/gridpoints/BOX/${FORECAST_BOX}/forecast/hourly`;
+            // Arlington, MA
+            const LAT =  '42.4201'; 
+            const LON = '-71.1615';
+            // Darksky API Key is in:
+            // https://github.com/CarltonHenderson/darksky-proxy/blob/master/endpoints/forecast.js
+            const FORECAST_URL = `https://gifted-hamilton-8bcdbf.netlify.com`+
+                `/.netlify/functions/forecast?lat=${LAT}&lon=${LON}/`;
 
-        function fTempWindChill(fTemp,mphWind) {
-            chill=(
-                35.74
-                + 0.6215 * fTemp
-                - 35.75          * Math.pow(mphWind,0.16)
-                + 0.4275 * fTemp * Math.pow(mphWind,0.16)
-            );
-            return chill
-        }
         function celsiusTempFromFahrenheit(FahrenheitTemp) {
             return (FahrenheitTemp - 32) * 5 / 9
         }
     </script>
 
-    <!-- Favicon Stuff -->
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png?v=69B8QMb3zQ">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=69B8QMb3zQ">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=69B8QMb3zQ">
-    <link rel="manifest" href="/site.webmanifest?v=69B8QMb3zQ">
-        <link rel="mask-icon" href="/safari-pinned-tab.svg?v=69B8QMb3zQ" color="#52106A">
-    <link rel="shortcut icon" href="/favicon.ico?v=69B8QMb3zQ">
-        <meta name="msapplication-TileColor" content="#52106A">
-        <meta name="theme-color" content="#52106A">
-    
-    <title>💙 Weather Arlington 💙</title>
 </head>
 <body>
         <div id="app">
@@ -168,16 +163,13 @@
             var app = new Vue({
                 el: '#app',
                 data: {
-                    fFeelsLike: "...",
-                    cFeelsLike: "...",
+                    fFeelsLike: '...',
+                    cFeelsLike: '...',
                 },
                 mounted() { // when the Vue app is booted up, this is run automatically.
                     var self = this // create a closure to access component in the callback below
-                    $.getJSON(HOURLY_URL, function(data) {
-                        temp = data.properties.periods[0].temperature; // 27
-                        windSpeedString = data.properties.periods[0].windSpeed; // "8 mph"
-                        windSpeed = Number(windSpeedString.split(" ")[0]) // 8
-                        self.fFeelsLike = Math.round(fTempWindChill(temp, windSpeed));
+                    $.getJSON(FORECAST_URL, function(data) {
+                        self.fFeelsLike= Math.round(data.currently.apparentTemperature);
                         self.cFeelsLike = Math.round(celsiusTempFromFahrenheit(self.fFeelsLike));
                     });
                 },
