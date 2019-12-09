@@ -113,6 +113,7 @@
     <title>💙 Weather Arlington 💙</title>
 </head>
 <body>
+        <div id="app">
     <div class="row">
         <div class="col-6 fahrenheit">
             <center>Fahrenheit</center>
@@ -129,7 +130,7 @@
             <script type='text/javascript' src='https://darksky.net/widget/default-small/42.4201,-71.1615/uk12/en.js?width=100%&height=70&title=Full Forecast&textColor=FFAC68&bgColor=52106A&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=ca'></script>
         </div>
     </div>
-    <div class="row" id="app">
+            <div class="row">
         <div class="col-6 fahrenheit">
             <center>Feels Like: {{fFeelsLike}}°F</center>
         </div>
@@ -137,25 +138,6 @@
             <center>Feels Like: {{cFeelsLike}}°C</center>
         </div>
     </div>
-    <script>
-        var app = new Vue({
-            el: '#app',
-            data: {
-                    fFeelsLike: "...",
-                    cFeelsLike: "...",
-            },
-            mounted() { // when the Vue app is booted up, this is run automatically.
-                var self = this // create a closure to access component in the callback below
-                $.getJSON(HOURLY_URL, function(data) {
-                    temp = data.properties.periods[0].temperature; // 27
-                    windSpeedString = data.properties.periods[0].windSpeed; // "8 mph"
-                    windSpeed = Number(windSpeedString.split(" ")[0]) // 8
-                    self.fFeelsLike = Math.round(fTempWindChill(temp, windSpeed));
-                    self.cFeelsLike = Math.round(celsiusTempFromFahrenheit(self.fFeelsLike));
-                });
-            },
-        })
-    </script>
     <div class="row ch-darksky fahrenheit">
         <div class="col-12">
             <script type='text/javascript' src='https://darksky.net/widget/graph-bar/42.4201,-71.1615/us12/en.js?width=100%&height=120&title=Full Forecast&textColor=6FC3C3&bgColor=672d7c&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=us&timeColor=6FC3C3&tempColor=6FC3C3&currentDetailsOption=false'></script>
@@ -181,5 +163,25 @@
             </center>
         </div>
     </div>
+        </div>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    fFeelsLike: "...",
+                    cFeelsLike: "...",
+                },
+                mounted() { // when the Vue app is booted up, this is run automatically.
+                    var self = this // create a closure to access component in the callback below
+                    $.getJSON(HOURLY_URL, function(data) {
+                        temp = data.properties.periods[0].temperature; // 27
+                        windSpeedString = data.properties.periods[0].windSpeed; // "8 mph"
+                        windSpeed = Number(windSpeedString.split(" ")[0]) // 8
+                        self.fFeelsLike = Math.round(fTempWindChill(temp, windSpeed));
+                        self.cFeelsLike = Math.round(celsiusTempFromFahrenheit(self.fFeelsLike));
+                    });
+                },
+            })
+        </script>
 </body>
 </html>
