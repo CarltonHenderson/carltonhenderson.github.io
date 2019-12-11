@@ -17,19 +17,19 @@
 
         <script> // https://weatherwidget.io/
             //   Celcius: Remove ?unit=us from href
-!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-</script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+        </script>
 
-<style>
+        <style>
 
-    /* Tutorial https://www.w3schools.com/Css/css_rwd_grid.asp */
+            /* Tutorial https://www.w3schools.com/Css/css_rwd_grid.asp */
 
-    /*First ensure that all HTML elements have the box-sizing property set to border-box. This makes sure that the padding and border are included in the total width and height of the elements. */
-    * {
-        box-sizing: border-box;
-    }
+            /*First ensure that all HTML elements have the box-sizing property set to border-box. This makes sure that the padding and border are included in the total width and height of the elements. */
+            * {
+                box-sizing: border-box;
+            }
 
-    /*make one class for each of the 12 columns, class="col-" and a number defining how many columns the section should span:*/
+            /*make one class for each of the 12 columns, class="col-" and a number defining how many columns the section should span:*/
             .col-1  {width: calc(100% / 12 *  1);}
             .col-2  {width: calc(100% / 12 *  2);}
             .col-3  {width: calc(100% / 12 *  3);}
@@ -42,57 +42,67 @@
             .col-10 {width: calc(100% / 12 * 10);}
             .col-11 {width: calc(100% / 12 * 11);}
             .col-12 {width: calc(100% / 12 * 12);}
+            .col-24 {width: calc(100% / 12 * 24);}
 
-    /* All these columns should be floating to the left, and have a padding of 15px: */
-    [class*="col-"] {
-        float: left;
-        padding: 15px;
-    }
+            /* All these columns should be floating to the left, and have a padding of 15px: */
+            [class*="col-"] {
+                float: left;
+                padding: 15px;
+            }
 
-    /* The columns inside a row are all floating to the left, and are therefore taken out of the flow of the page, and other elements will be placed as if the columns do not exist. To prevent this, we will add a style that clears the flow: */
-    .row::after {
-        content: "";
-        clear: both;
-        display: table;
-      }
+            /* The columns inside a row are all floating to the left, and are therefore taken out of the flow of the page, and other elements will be placed as if the columns do not exist. To prevent this, we will add a style that clears the flow: */
+            .row::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
 
-    /* Carl's Styles
-    Colors: https://paletton.com/#uid=74V1c0kn4u2dQI9iXySsCrYtYlK
-    */
-    body {
-        background-color: #52106A;
-        color: #E9FA8E;
-    }
-    .ch-nopad [class*="col-"] {
-        padding: 0;
-    }
-    .ch-darksky [class*="col-"] {
-        padding: 0;
-        border:5;
-        border-color:#52106A
-    }
-    .fahrenheit {
-        color: #6FC3C3;
-    }
-    .celsius {
-        color: #FFAC68;
-    }
-    [class*="col-"] {
-        padding: 5px;
-    }
-</style>
+            /* Carl's Styles
+            Colors: https://paletton.com/#uid=74V1c0kn4u2dQI9iXySsCrYtYlK
+            */
+            body {
+                background-color: #52106A;
+                color: #E9FA8E;
+            }
+            .ch-nopad [class*="col-"] {
+                padding: 0;
+            }
+            .ch-darksky [class*="col-"] {
+                padding: 0;
+                border:5;
+                border-color:#52106A
+            }
+            .fahrenheit {
+                color: #6FC3C3;
+            }
+            .celsius {
+                color: #FFAC68;
+            }
+            [class*="col-"] {
+                padding: 5px;
+            }
+            div {
+                text-align: center;
+            }
+            .hint {
+                font-size: 50%;
+            }
+            .head {
+                font-size: 130%;
+            }
+        </style>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Vue development version, includes helpful console warnings -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
-    <!-- Vue production version, optimized for size and speed -->
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <!-- Vue development version, includes helpful console warnings -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+        <!-- Vue production version, optimized for size and speed -->
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <script>
+        <script>
             // Arlington, MA
             const LAT =  '42.4201'; 
             const LON = '-71.1615';
@@ -101,86 +111,92 @@
             const FORECAST_URL = `https://gifted-hamilton-8bcdbf.netlify.com`+
                 `/.netlify/functions/forecast?lat=${LAT}&lon=${LON}/`;
 
-        function celsiusTempFromFahrenheit(FahrenheitTemp) {
-            return (FahrenheitTemp - 32) * 5 / 9
-        }
-    </script>
+            function celsiusTempFromFahrenheit(FahrenheitTemp) {
+                return (FahrenheitTemp - 32) * 5 / 9
+            }
+        </script>
 
-</head>
-<body>
+    </head>
+    <body>
         <div id="app">
-    <div class="row">
+            <div class="row">
                 <div class="col-12">
-                    <center>
-                        Expect showers of kisses this evening.
-                    </center>
+                    Expect to be drenched by kisses this evening.
                 </div>
             </div>
              <div class="row">
-        <div class="col-6 fahrenheit">
-            <center>Fahrenheit</center>
-        </div>
-        <div class="col-6 celsius">
-            <center>Celsius</center>
-        </div>
-    </div>
-    <div class="row ch-darksky fahrenheit">
-        <div class="col-6">
-            <script type='text/javascript' src='https://darksky.net/widget/default-small/42.4201,-71.1615/us12/en.js?width=100%&height=70&title=Full Forecast&textColor=6FC3C3&bgColor=52106A&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=us'></script>
-        </div>
-        <div class="col-6 celsius">
-            <script type='text/javascript' src='https://darksky.net/widget/default-small/42.4201,-71.1615/uk12/en.js?width=100%&height=70&title=Full Forecast&textColor=FFAC68&bgColor=52106A&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=ca'></script>
-        </div>
-    </div>
+                <div class="col-6 fahrenheit">
+                    Fahrenheit
+                </div>
+                <div class="col-6 celsius">
+                    Celsius
+                </div>
+            </div>
+            <div class="row ch-darksky fahrenheit">
+                <div class="col-6">
+                    <script type='text/javascript' src='https://darksky.net/widget/default-small/42.4201,-71.1615/us12/en.js?width=100%&height=70&title=Full Forecast&textColor=6FC3C3&bgColor=52106A&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=us'></script>
+                </div>
+                <div class="col-6 celsius">
+                    <script type='text/javascript' src='https://darksky.net/widget/default-small/42.4201,-71.1615/uk12/en.js?width=100%&height=70&title=Full Forecast&textColor=FFAC68&bgColor=52106A&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=ca'></script>
+                </div>
+            </div>
             <div class="row">
-        <div class="col-6 fahrenheit">
-            <center>Feels Like: {{fFeelsLike}}°F</center>
-        </div>
-        <div class="col-6 celsius">
-            <center>Feels Like: {{cFeelsLike}}°C</center>
-        </div>
-    </div>
-    <div class="row ch-darksky fahrenheit">
-        <div class="col-12">
-            <script type='text/javascript' src='https://darksky.net/widget/graph-bar/42.4201,-71.1615/us12/en.js?width=100%&height=120&title=Full Forecast&textColor=6FC3C3&bgColor=672d7c&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=us&timeColor=6FC3C3&tempColor=6FC3C3&currentDetailsOption=false'></script>
-        </div>
-    </div>
-    <div class="row ch-darksky celsius">
-        <div class="col-12">
-            <script type='text/javascript' src='https://darksky.net/widget/graph-bar/42.4201,-71.1615/ca12/en.js?width=100%&height=120&title=Full Forecast&textColor=FFAC68&bgColor=52106A&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=ca&timeColor=FFAC68&tempColor=FFAC68&currentDetailsOption=false'></script>
-        </div>
-    </div>
-    <div class="row ch-nopad">
-        <div class="ch-left col-6 fahrenheit">
-            <a class="weatherwidget-io left" href="https://forecast7.com/en/42d42n71d16/arlington/?unit=us" data-font="Times New Roman" data-icons="Climacons Animated" data-mode="Forecast" data-theme="candy" data-basecolor="#52106A" data-shadow="rgba(0, 0, 0, 0.35)" data-textcolor="#6FC3C3" data-highcolor="#6FC3C3" data-lowcolor="#6FC3C3" data-suncolor="#E9FA8E" data-mooncolor="#cccccc" data-cloudcolor="#cccccc" data-cloudfill="#B784C9" data-raincolor="#7FB4C3" >Arlington, MA, USA</a>
-        </div>
-        <div class="ch-right col-6 celsius">
-            <a class="weatherwidget-io left" href="https://forecast7.com/en/42d42n71d16/arlington/" data-font="Times New Roman" data-icons="Climacons Animated" data-mode="Forecast" data-theme="candy" data-basecolor="#52106A" data-shadow="rgba(0, 0, 0, 0.35)" data-textcolor="#FFAC68" data-highcolor="#FFAC68" data-lowcolor="#FFAC68" data-suncolor="#E9FA8E" data-mooncolor="#cccccc" data-cloudcolor="#cccccc" data-cloudfill="#B784C9" data-raincolor="#7FB4C3" >Arlington, MA, USA</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <center>
-                CH 💙 LR
-            </center>
-        </div>
-    </div>
+                <div class="col-6 fahrenheit">
+                    Feels Like: {{fFeelsLike}}°F
+                </div>
+                <div class="col-6 celsius">
+                    Feels Like: {{cFeelsLike}}°C
+                </div>
+            </div>
+            <div class="row ch-darksky">
+                <div v-for="time in forecast.hourly.data.map(x => new Date(x.time*1000)).slice(0,HOURS_FORWARD)" class="col-1"><span class="head">
+                    {{ time.getHours() }}<span class="hint">:00</span></span>
+                </div>
+            </div>
+            <div class="row ch-darksky fahrenheit">
+                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-1">
+                    {{ Math.round(datum.temperature) }}<span class="hint">°F</span>
+                </div>
+            </div>
+            <div class="row ch-darksky celsius">
+                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-1">
+                    {{ Math.round(celsiusTempFromFahrenheit(datum.temperature)) }}<span class="hint">°C</span>
+                </div>
+            </div>
+            <div class="row ch-nopad">
+                <div class="ch-left col-6 fahrenheit">
+                    <a class="weatherwidget-io left" href="https://forecast7.com/en/42d42n71d16/arlington/?unit=us" data-font="Times New Roman" data-icons="Climacons Animated" data-mode="Forecast" data-theme="candy" data-basecolor="#52106A" data-shadow="rgba(0, 0, 0, 0.35)" data-textcolor="#6FC3C3" data-highcolor="#6FC3C3" data-lowcolor="#6FC3C3" data-suncolor="#E9FA8E" data-mooncolor="#cccccc" data-cloudcolor="#cccccc" data-cloudfill="#B784C9" data-raincolor="#7FB4C3" >Arlington, MA, USA</a>
+                </div>
+                <div class="ch-right col-6 celsius">
+                    <a class="weatherwidget-io left" href="https://forecast7.com/en/42d42n71d16/arlington/" data-font="Times New Roman" data-icons="Climacons Animated" data-mode="Forecast" data-theme="candy" data-basecolor="#52106A" data-shadow="rgba(0, 0, 0, 0.35)" data-textcolor="#FFAC68" data-highcolor="#FFAC68" data-lowcolor="#FFAC68" data-suncolor="#E9FA8E" data-mooncolor="#cccccc" data-cloudcolor="#cccccc" data-cloudfill="#B784C9" data-raincolor="#7FB4C3" >Arlington, MA, USA</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    
+                        CH 💙 LR
+                    
+                </div>
+            </div>
         </div>
         <script>
             var app = new Vue({
                 el: '#app',
                 data: {
+                    HOURS_FORWARD: 12, 
                     fFeelsLike: '...',
                     cFeelsLike: '...',
+                    forecast: {},
                 },
                 mounted() { // when the Vue app is booted up, this is run automatically.
                     var self = this // create a closure to access component in the callback below
                     $.getJSON(FORECAST_URL, function(data) {
                         self.fFeelsLike= Math.round(data.currently.apparentTemperature);
                         self.cFeelsLike = Math.round(celsiusTempFromFahrenheit(self.fFeelsLike));
+                        self.forecast = data;
                     });
                 },
             })
         </script>
-</body>
+    </body>
 </html>
