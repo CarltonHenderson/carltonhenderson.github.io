@@ -69,7 +69,6 @@
             }
             .ch-darksky [class*="col-"] {
                 padding: 0;
-                border:5;
                 border-color:#52106A
             }
             .fahrenheit {
@@ -81,14 +80,21 @@
             [class*="col-"] {
                 padding: 5px;
             }
+            .ch-hourly {
+                padding: 0;
+                border:5;
+            }
+            .ch-hourly.row > div:nth-child(odd) {
+                background: rgba(255, 255, 255, 0.12);
+            }
             div {
                 text-align: center;
             }
             .hint {
-                font-size: 50%;
+                font-size: 40%;
             }
             .head {
-                font-size: 130%;
+                font-size: 80%;
             }
         </style>
 
@@ -101,6 +107,9 @@
 
         <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/7f71f25e39.js" crossorigin="anonymous"></script>
 
         <script>
             // Arlington, MA
@@ -121,7 +130,7 @@
         <div id="app">
             <div class="row">
                 <div class="col-12">
-                    Expect to be drenched by kisses this evening.
+                    {{forecast.minutely.summary}}<br />
                 </div>
             </div>
              <div class="row">
@@ -148,19 +157,49 @@
                     Feels Like: {{cFeelsLike}}°C
                 </div>
             </div>
-            <div class="row ch-darksky">
-                <div v-for="time in forecast.hourly.data.map(x => new Date(x.time*1000)).slice(0,HOURS_FORWARD)" class="col-1"><span class="head">
-                    {{ time.getHours() }}<span class="hint">:00</span></span>
+            <div class="row">
+                <div class="col-12">
+                    {{forecast.hourly.summary}}
                 </div>
             </div>
-            <div class="row ch-darksky fahrenheit">
-                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-1">
-                    {{ Math.round(datum.temperature) }}<span class="hint">°F</span>
+            <div class="row ch-hourly">
+                <div class="col-1">
+                    <span class="head"><i class="far fa-clock"></i></span>
+                </div>
+                <div v-for="time in forecast.hourly.data.map(x => new Date(x.time*1000)).slice(0,HOURS_FORWARD)" class="col-1">
+                    <span class="head">{{ time.getHours() }}<span class="hint">:00</span></span>
                 </div>
             </div>
-            <div class="row ch-darksky celsius">
+            <div class="row ch-hourly fahrenheit">
+                <div class="col-1">
+                    <span class="head"><i class="fas fa-thermometer-half"></i>F</span>
+                </div>
                 <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-1">
-                    {{ Math.round(celsiusTempFromFahrenheit(datum.temperature)) }}<span class="hint">°C</span>
+                    {{ Math.round(datum.temperature) }}
+                </div>
+            </div>
+            <div class="row ch-hourly celsius">
+                <div class="col-1">
+                    <span class="head"><i class="fas fa-thermometer-half"></i>C</span>
+                </div>
+                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-1">
+                    {{ Math.round(celsiusTempFromFahrenheit(datum.temperature)) }}
+                </div>
+            </div>
+            <div class="row ch-hourly precipitation">
+                <div class="col-1">
+                    <span class="head"><i class="fas fa-cloud-showers-heavy"></i></span>
+                </div>
+                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-1">
+                    <div v-if="datum.precipProbability">
+                        {{ Math.round(datum.precipProbability*100) }}<span class="hint">%</span>
+                    </div><div v-else>&nbsp;</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    {{forecast.daily.summary}}<br />
+                    Love continuing throughout the month.
                 </div>
             </div>
             <div class="row ch-nopad">
@@ -183,7 +222,7 @@
             var app = new Vue({
                 el: '#app',
                 data: {
-                    HOURS_FORWARD: 12, 
+                    HOURS_FORWARD: 11, 
                     fFeelsLike: '...',
                     cFeelsLike: '...',
                     forecast: {},
