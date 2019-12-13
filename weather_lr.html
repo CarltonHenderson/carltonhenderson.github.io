@@ -30,6 +30,7 @@
             }
 
             /*make one class for each of the 12 columns, class="col-" and a number defining how many columns the section should span:*/
+            .col-h  {width: calc(100% / 12 *  0.5);}
             .col-1  {width: calc(100% / 12 *  1);}
             .col-2  {width: calc(100% / 12 *  2);}
             .col-3  {width: calc(100% / 12 *  3);}
@@ -83,6 +84,7 @@
             .ch-hourly {
                 padding: 0;
                 border:5;
+                width: 200%;
             }
             .ch-hourly.row > div:nth-child(odd) {
                 background: rgba(255, 255, 255, 0.12);
@@ -163,34 +165,34 @@
                 </div>
             </div>
             <div class="row ch-hourly">
-                <div class="col-1">
+                <div class="col-h">
                     <span class="head"><i class="far fa-clock"></i></span>
                 </div>
-                <div v-for="time in forecast.hourly.data.map(x => new Date(x.time*1000)).slice(0,HOURS_FORWARD)" class="col-1">
+                <div v-for="time in forecast.hourly.data.map(x => new Date(x.time*1000)).slice(0,HOURS_FORWARD)" class="col-h">
                     <span class="head">{{ time.getHours() }}<span class="hint">:00</span></span>
                 </div>
             </div>
             <div class="row ch-hourly fahrenheit">
-                <div class="col-1">
+                <div class="col-h">
                     <span class="head"><i class="fas fa-thermometer-half"></i>F</span>
                 </div>
-                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-1">
+                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-h">
                     {{ Math.round(datum.temperature) }}
                 </div>
             </div>
             <div class="row ch-hourly celsius">
-                <div class="col-1">
+                <div class="col-h">
                     <span class="head"><i class="fas fa-thermometer-half"></i>C</span>
                 </div>
-                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-1">
+                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-h">
                     {{ Math.round(celsiusTempFromFahrenheit(datum.temperature)) }}
                 </div>
             </div>
             <div class="row ch-hourly precipitation">
-                <div class="col-1">
+                <div class="col-h">
                     <span class="head"><i class="fas fa-cloud-showers-heavy"></i></span>
                 </div>
-                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-1">
+                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-h">
                     <div v-if="datum.precipProbability">
                         {{ Math.round(datum.precipProbability*100) }}<span class="hint">%</span>
                     </div><div v-else>&nbsp;</div>
@@ -222,7 +224,7 @@
             var app = new Vue({
                 el: '#app',
                 data: {
-                    HOURS_FORWARD: 11, 
+                    HOURS_FORWARD: 23, 
                     fFeelsLike: '...',
                     cFeelsLike: '...',
                     forecast: {},
