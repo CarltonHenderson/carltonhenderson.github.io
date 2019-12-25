@@ -13,7 +13,7 @@
         <meta name="msapplication-TileColor" content="#52106A">
         <meta name="theme-color" content="#52106A">
         
-        <title>💙 Weather Arlington 💙</title>
+        <title>💙 Weather NYC 💙</title>
 
         <script> // https://weatherwidget.io/
             //   Celcius: Remove ?unit=us from href
@@ -63,7 +63,7 @@
             */
             body {
                 background-color: #52106A;
-                color: #E9FA8E;
+                color: #E9FAAE;
             }
             .ch-nopad [class*="col-"] {
                 padding: 0;
@@ -115,8 +115,11 @@
 
         <script>
             // Arlington, MA
-            const LAT =  '42.4201'; 
-            const LON = '-71.1615';
+            // const LAT =  '42.4201'; 
+            // const LON = '-71.1615';
+            // NYC central park
+            const LAT =  '40.7829'; 
+            const LON = '-73.9654';
             // Darksky API Key is in:
             // https://github.com/CarltonHenderson/darksky-proxy/blob/master/endpoints/forecast.js
             const FORECAST_URL = `https://gifted-hamilton-8bcdbf.netlify.com`+
@@ -145,10 +148,10 @@
             </div>
             <div class="row ch-darksky fahrenheit">
                 <div class="col-6">
-                    <script type='text/javascript' src='https://darksky.net/widget/default-small/42.4201,-71.1615/us12/en.js?width=100%&height=70&title=Full Forecast&textColor=6FC3C3&bgColor=52106A&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=us'></script>
+                    <script type='text/javascript' src='https://darksky.net/widget/default-small/40.7829-73.9654/us12/en.js?width=100%&height=70&title=Full Forecast&textColor=6FC3C3&bgColor=52106A&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=us'></script>
                 </div>
                 <div class="col-6 celsius">
-                    <script type='text/javascript' src='https://darksky.net/widget/default-small/42.4201,-71.1615/uk12/en.js?width=100%&height=70&title=Full Forecast&textColor=FFAC68&bgColor=52106A&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=ca'></script>
+                    <script type='text/javascript' src='https://darksky.net/widget/default-small/40.7829,-73.9654/uk12/en.js?width=100%&height=70&title=Full Forecast&textColor=FFAC68&bgColor=52106A&transparency=false&skyColor=undefined&fontFamily=Times New Roman&customFont=&units=ca'></script>
                 </div>
             </div>
             <div class="row">
@@ -202,14 +205,6 @@
                 <div class="col-12">
                     {{forecast.daily.summary}}<br />
                     Love continuing throughout the month.
-                </div>
-            </div>
-            <div class="row ch-nopad">
-                <div class="ch-left col-6 fahrenheit">
-                    <a class="weatherwidget-io left" href="https://forecast7.com/en/42d42n71d16/arlington/?unit=us" data-font="Times New Roman" data-icons="Climacons Animated" data-mode="Forecast" data-theme="candy" data-basecolor="#52106A" data-shadow="rgba(0, 0, 0, 0.35)" data-textcolor="#6FC3C3" data-highcolor="#6FC3C3" data-lowcolor="#6FC3C3" data-suncolor="#E9FA8E" data-mooncolor="#cccccc" data-cloudcolor="#cccccc" data-cloudfill="#B784C9" data-raincolor="#7FB4C3" >Arlington, MA, USA</a>
-                </div>
-                <div class="ch-right col-6 celsius">
-                    <a class="weatherwidget-io left" href="https://forecast7.com/en/42d42n71d16/arlington/" data-font="Times New Roman" data-icons="Climacons Animated" data-mode="Forecast" data-theme="candy" data-basecolor="#52106A" data-shadow="rgba(0, 0, 0, 0.35)" data-textcolor="#FFAC68" data-highcolor="#FFAC68" data-lowcolor="#FFAC68" data-suncolor="#E9FA8E" data-mooncolor="#cccccc" data-cloudcolor="#cccccc" data-cloudfill="#B784C9" data-raincolor="#7FB4C3" >Arlington, MA, USA</a>
                 </div>
             </div>
             <div class="row">
