@@ -117,9 +117,11 @@
             // Arlington, MA
             // const LAT =  '42.4201'; 
             // const LON = '-71.1615';
+            // const WWLL = '42d42n71d16';
             // NYC central park
             const LAT =  '40.7829'; 
             const LON = '-73.9654';
+            const WWLL = '40d78n73d97';
             // Darksky API Key is in:
             // https://github.com/CarltonHenderson/darksky-proxy/blob/master/endpoints/forecast.js
             const FORECAST_URL = `https://gifted-hamilton-8bcdbf.netlify.com`+
@@ -205,6 +207,14 @@
                 <div class="col-12">
                     {{forecast.daily.summary}}<br />
                     Love continuing throughout the month.
+                </div>
+            </div>
+	    <div class="row ch-nopad">
+                <div class="ch-left col-6 fahrenheit">
+                    <a class="weatherwidget-io left" href="https://forecast7.com/en/{{ WWLL }}/arlington/?unit=us" data-font="Times New Roman" data-icons="Climacons Animated" data-mode="Forecast" data-theme="candy" data-basecolor="#52106A" data-shadow="rgba(0, 0, 0, 0.35)" data-textcolor="#6FC3C3" data-highcolor="#6FC3C3" data-lowcolor="#6FC3C3" data-suncolor="#E9FA8E" data-mooncolor="#cccccc" data-cloudcolor="#cccccc" data-cloudfill="#B784C9" data-raincolor="#7FB4C3" >Arlington, MA, USA</a>
+                </div>
+                <div class="ch-right col-6 celsius">
+                    <a class="weatherwidget-io left" href="https://forecast7.com/en/{{ WWLL }}/arlington/" data-font="Times New Roman" data-icons="Climacons Animated" data-mode="Forecast" data-theme="candy" data-basecolor="#52106A" data-shadow="rgba(0, 0, 0, 0.35)" data-textcolor="#FFAC68" data-highcolor="#FFAC68" data-lowcolor="#FFAC68" data-suncolor="#E9FA8E" data-mooncolor="#cccccc" data-cloudcolor="#cccccc" data-cloudfill="#B784C9" data-raincolor="#7FB4C3" >Arlington, MA, USA</a>
                 </div>
             </div>
             <div class="row">
