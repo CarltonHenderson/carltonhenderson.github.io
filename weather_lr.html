@@ -2,7 +2,7 @@
 <html lang="en"> 
     <head>
         <meta charset="utf-8"/>
-
+ 
         <!-- Favicon Stuff -->
         <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png?v=69B8QMb3zQ">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=69B8QMb3zQ">
@@ -14,21 +14,21 @@
         <meta name="theme-color" content="#6F35A1">
         
         <title>💙 Weather Arlington 💙</title>
-
+ 
         <script> // https://weatherwidget.io/
             //   Celcius: Remove ?unit=us from href
             !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
         </script>
-
+ 
         <style>
-
+ 
             /* Tutorial https://www.w3schools.com/Css/css_rwd_grid.asp */
-
+ 
             /*First ensure that all HTML elements have the box-sizing property set to border-box. This makes sure that the padding and border are included in the total width and height of the elements. */
             * {
                 box-sizing: border-box;
             }
-
+ 
             /*make one class for each of the 12 columns, class="col-" and a number defining how many columns the section should span:*/
             .col-h  {width: calc(100% / 12 *  0.5);}
             .col-1  {width: calc(100% / 12 *  1);}
@@ -44,20 +44,20 @@
             .col-11 {width: calc(100% / 12 * 11);}
             .col-12 {width: calc(100% / 12 * 12);}
             .col-24 {width: calc(100% / 12 * 24);}
-
+ 
             /* All these columns should be floating to the left, and have a padding of 15px: */
             [class*="col-"] {
                 float: left;
                 padding: 15px;
             }
-
+ 
             /* The columns inside a row are all floating to the left, and are therefore taken out of the flow of the page, and other elements will be placed as if the columns do not exist. To prevent this, we will add a style that clears the flow: */
             .row::after {
                 content: "";
                 clear: both;
                 display: table;
             }
-
+ 
             /* Carl's Styles
             Colors: https://paletton.com/#uid=74V1c0kn4u2dQI9iXySsCrYtYlK
             */
@@ -104,20 +104,20 @@
                 font-size: 80%;
             }
         </style>
-
+ 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+ 
         <!-- Vue development version, includes helpful console warnings -->
         <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
         <!-- Vue production version, optimized for size and speed -->
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-
+ 
         <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+ 
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/7f71f25e39.js" crossorigin="anonymous"></script>
-
+ 
         <script>
             // Arlington, MA
             const LAT =  '42.4201'; 
@@ -126,12 +126,12 @@
             // https://github.com/CarltonHenderson/darksky-proxy/blob/master/endpoints/forecast.js
             const FORECAST_URL = `https://gifted-hamilton-8bcdbf.netlify.com`+
                 `/.netlify/functions/forecast?lat=${LAT}&lon=${LON}/`;
-
+ 
             function celsiusTempFromFahrenheit(FahrenheitTemp) {
                 return (FahrenheitTemp - 32) * 5 / 9
             }
         </script>
-
+ 
     </head>
     <body>
         <div id="app">
@@ -209,7 +209,7 @@
                 <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-h">
                     <div v-if="datum.precipProbability">
                         {{ Math.round(datum.precipProbability*100) }}<span class="hint">%</span>
-                    </div><div v-else>&nbsp;</div>
+                    </div><div v-else> </div>
                 </div>
             </div>
             <div class="row ch-hourly precipType">
