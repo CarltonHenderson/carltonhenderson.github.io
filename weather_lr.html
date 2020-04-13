@@ -95,6 +95,11 @@
             .hint {
                 font-size: 40%;
             }
+            .alert a:link, a:visited {
+                color: #C874CB;
+                color: #C874CB;
+                text-decoration: none;
+            }
             .head {
                 font-size: 80%;
             }
@@ -157,6 +162,15 @@
                 </div>
                 <div class="col-6 celsius">
                     Feels Like: {{cFeelsLike}}°C
+                </div>
+            </div>
+            <div class="row alert" v-for="alert in forecast.alerts">
+                <div class="col-12" >
+                    <a :href="alert.uri">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        &nbsp;
+                        {{alert.title}}
+                    </a>
                 </div>
             </div>
             <div class="row">
