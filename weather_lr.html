@@ -212,6 +212,17 @@
                     </div><div v-else>&nbsp;</div>
                 </div>
             </div>
+            <div class="row ch-hourly precipType">
+                <div class="col-h">
+                    <span class="head"><i class="fas fa-cloud-showers-heavy"></i></span>
+                </div>
+                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-h">
+                    <div v-if="datum.precipType == 'rain'"><i class="fas fa-cloud-rain"></i></div>
+                    <div v-if="datum.precipType == 'snow'"><i class="fas fa-snowflake"></i></div>
+                    <div v-if="datum.precipType == 'sleet'"><i class="fas fa-ice-cream"></i></div>
+                    <div v-else>&nbsp;</div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12">
                     {{forecast.daily.summary}}<br />
