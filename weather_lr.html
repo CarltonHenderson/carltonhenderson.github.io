@@ -216,10 +216,16 @@
                 <div class="col-h">
                     <span class="head"><i class="fas fa-cloud-showers-heavy"></i></span>
                 </div>
-                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)" class="col-h">
+                <div v-for="datum in forecast.hourly.data.slice(0,HOURS_FORWARD)"
+                    class="col-h"
+                    :style="`
+                        filter:alpha(opacity=${Math.round(datum.precipProbability*100*(3/4)+(1/4))}); 
+                        opacity:${datum.precipProbability*(4/5)+(1/5)};
+                    `"
+                >
                     <div v-if="datum.precipType == 'rain'"><i class="fas fa-cloud-rain"></i></div>
-                    <div v-if="datum.precipType == 'snow'"><i class="fas fa-snowflake"></i></div>
-                    <div v-if="datum.precipType == 'sleet'"><i class="fas fa-ice-cream"></i></div>
+                    <div v-else-if="datum.precipType == 'snow'"><i class="fas fa-snowflake"></i></div>
+                    <div v-else-if="datum.precipType == 'sleet'"><i class="fas fa-ice-cream"></i></div>
                     <div v-else>&nbsp;</div>
                 </div>
             </div>
