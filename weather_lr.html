@@ -30,7 +30,7 @@
             }
 
             /*make one class for each of the 12 columns, class="col-" and a number defining how many columns the section should span:*/
-            .col-h  {width: calc(100% / 12 *  0.5);}
+            .col-h  {width: calc(100% / 12 *  0.25);}
             .col-1  {width: calc(100% / 12 *  1);}
             .col-2  {width: calc(100% / 12 *  2);}
             .col-3  {width: calc(100% / 12 *  3);}
@@ -44,6 +44,7 @@
             .col-11 {width: calc(100% / 12 * 11);}
             .col-12 {width: calc(100% / 12 * 12);}
             .col-24 {width: calc(100% / 12 * 24);}
+            .col-48 {width: calc(100% / 12 * 48);}
 
             /* All these columns should be floating to the left, and have a padding of 15px: */
             [class*="col-"] {
@@ -84,7 +85,7 @@
             .ch-hourly {
                 padding: 0;
                 border:5;
-                width: 200%;
+                width: 400%;
             }
             .ch-hourly.row > div:nth-child(odd) {
                 background: rgba(255, 255, 255, 0.12);
@@ -183,6 +184,14 @@
                     <span class="head"><i class="far fa-clock"></i></span>
                 </div>
                 <div v-for="time in forecast.hourly.data.map(x => new Date(x.time*1000)).slice(0,HOURS_FORWARD)" class="col-h">
+                    <span class="head">{{ time.getDay() == (new Date(Date.now()).getDay()+1)%7 ? '~': '&nbsp;' }}</span>
+                </div>
+            </div>
+            <div class="row ch-hourly">
+                <div class="col-h">
+                    <span class="head"><i class="far fa-clock"></i></span>
+                </div>
+                <div v-for="time in forecast.hourly.data.map(x => new Date(x.time*1000)).slice(0,HOURS_FORWARD)" class="col-h">
                     <span class="head">{{ time.getHours() }}<span class="hint">:00</span></span>
                 </div>
             </div>
@@ -232,7 +241,7 @@
             <div class="row">
                 <div class="col-12">
                     {{forecast.daily.summary}}<br />
-                    Love continuing throughout quarantine.
+                    Love continuing thoroughly.
                 </div>
             </div>
             <div class="row ch-nopad">
@@ -246,7 +255,7 @@
             <div class="row">
                 <div class="col-12">
 
-                        Soooo CH 💙 LR Much!
+                        CH 💙 LR
 
                 </div>
             </div>
@@ -255,7 +264,7 @@
             var app = new Vue({
                 el: '#app',
                 data: {
-                    HOURS_FORWARD: 23,
+                    HOURS_FORWARD: 47,
                     fFeelsLike: '...',
                     cFeelsLike: '...',
                     forecast: {},
